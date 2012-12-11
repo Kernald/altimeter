@@ -14,6 +14,8 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.trevorpage.tpsvg.SVGParserRenderer;
+
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -29,9 +31,10 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	
 	private static final String TAG = "MainActivity";
-	TextView	_altitude;
-	TextView	_latitude;
-	TextView	_longitude;
+	TextView		_altitude;
+	TextView		_latitude;
+	TextView		_longitude;
+	BackgroundView	_background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,11 @@ public class MainActivity extends Activity {
         _latitude = (TextView) findViewById(R.id.textview_latitude);
         _longitude = (TextView) findViewById(R.id.textview_longitude);
         requestLocation();
+        
+        _background = (BackgroundView)this.findViewById(R.id.background);
+        SVGParserRenderer image = new SVGParserRenderer(this, R.raw.background);
+        _background.setSVGRenderer(image, null);
+        _background.setBackgroundColor(0xffffffff);
     }
 
     @Override
@@ -58,6 +66,7 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(Double result) {
         	_altitude.setText(getResources().getQuantityString(R.plurals.altitude, result.intValue(), result));
+        	_background.setAltitude(result);
         }
     }
     
