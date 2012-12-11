@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Altimeter</string>
+    <string name="menu_settings">Settings</string>
+    <string name="waiting_for_fix">Waiting for GPS…</string>
+    
+    <plurals name="altitude">
+        <item quantity="one">Altitude: 1 meter</item>
+        <item quantity="other">Altitude: %f meters</item>
+    </plurals>
+    <string name="longitude">Longitude: %f°</string>
+    <string name="latitude">Latitude: %f°</string>
+
+</resources>
