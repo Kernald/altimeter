@@ -36,8 +36,19 @@ public class BackgroundView extends SVGView {
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		int height = getHeightForImageHeight(canvas.getHeight());
-		canvas.drawLine(0, height, canvas.getWidth(), height, _painter);
+		
+		// Get the real image size
+		int realHeight = getHeight();
+		int realWidth = getWidth();
+		boolean higher = getHeight() / getWidth() > 1280 / 800;
+		if (higher)
+			realHeight = 1280 * getWidth() / 800;
+		else
+			realWidth = 800 * getHeight() / 1280;
+		Log.d(TAG, "real w: " + realWidth);
+		Log.d(TAG, "real h: " + realHeight);
+		int height = getHeightForImageHeight(realHeight);
+		canvas.drawLine(0, height, realWidth, height, _painter);
 	}
 	
 	public void setAltitude(double altitude) {
@@ -50,8 +61,9 @@ public class BackgroundView extends SVGView {
 	}
 	
 	private int getHeightForImageHeight(int imageHeight) {
+		Log.d(TAG, "image height: " + imageHeight);
 		int res = (int)(imageHeight * (1 - ((_altitude - _minHeight) / _offset)));
-		Log.d(TAG, String.valueOf(res));
+		Log.d(TAG, String.valueOf(res) + " (" + _altitude + "m)");
 		return res;
 	}
 }
