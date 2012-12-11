@@ -63,7 +63,17 @@ public class MainActivity extends Activity {
     
     private void requestLocation() {
     	LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-    	Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+    	
+    	// Try to get the last known location
+    	Location lastKnownLocation = null;
+    	for (String gps : locationManager.getAllProviders()) {
+    		Log.d(TAG, "Checking for last known location from " + gps);
+    		Location tmp = locationManager.getLastKnownLocation(gps);
+    		if (lastKnownLocation != null && tmp != null && tmp.getTime() > lastKnownLocation.getTime() || lastKnownLocation == null && tmp != null) {
+    			Log.d(TAG, "More recent than previous, using this one");
+    			lastKnownLocation = tmp;
+    		}
+    	}
     	
     	LocationListener locationListener = new LocationListener() {
     	    public void onLocationChanged(Location location) {
@@ -81,9 +91,14 @@ public class MainActivity extends Activity {
     	    public void onProviderDisabled(String provider) {}
     	 };
     	 
-    	 locationListener.onLocationChanged(lastKnownLocation);
+    	 if (lastKnownLocation != null) {
+    		 
+    		 locationListener.onLocationChanged(lastKnownLocation);
+    	 } else {
+    		 Log.d(TAG, "Last known location: unknown");
+    	 }
     	 
-    	 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000000, 0, locationListener);
+    	 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 60 * 1, 0, locationListener);
     }
     
     private double getAltitude(Double longitude, Double latitude) {
@@ -105,7 +120,6 @@ public class MainActivity extends Activity {
                 StringBuffer respStr = new StringBuffer();
                 while ((r = instream.read()) != -1)
                     respStr.append((char) r);
-                Log.d(TAG, respStr.toString());
                 instream.close();
                 
                 try {
