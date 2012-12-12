@@ -51,11 +51,11 @@ public class MainActivity extends Activity {
         _background.setBackgroundColor(0xffffffff);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
-    }
+    }*/
     
     private class AltitudeRequester extends AsyncTask<Location, Void, Double> {
         @Override
