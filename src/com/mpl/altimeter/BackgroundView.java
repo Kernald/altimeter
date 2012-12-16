@@ -20,31 +20,36 @@ public class BackgroundView extends SVGView {
 
 	public BackgroundView(Context context) {
 		super(context);
-		_painter.setColor(_color);
+		init();
 	}
 
 	public BackgroundView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		_painter.setColor(_color);
+		init();
 	}
 
 	public BackgroundView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		init();
+	}
+	
+	private void init() {
 		_painter.setColor(_color);
+		setFill(true);
 	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		
-		// Get the real image size
+		// Get the real displayed image size
 		int realHeight = getHeight();
 		int realWidth = getWidth();
 		boolean higher = getHeight() / getWidth() > 1280 / 800;
 		if (higher)
-			realHeight = 1280 * getWidth() / 800;
-		else
 			realWidth = 800 * getHeight() / 1280;
+		else
+			realHeight = 1280 * getWidth() / 800;
 		Log.d(TAG, "real w: " + realWidth);
 		Log.d(TAG, "real h: " + realHeight);
 		int height = getHeightForImageHeight(realHeight);

@@ -25,7 +25,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
