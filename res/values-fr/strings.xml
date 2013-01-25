@@ -3,6 +3,7 @@
 
     <string name="app_name">Altimètre</string>
     <string name="menu_settings">Paramètres</string>
+    <string name="gps_disabled">GPS désactivé</string>
     <string name="waiting_for_fix">En attente du GPS…</string>
     
     <plurals name="altitude">

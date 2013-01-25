@@ -24,11 +24,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
+	@SuppressWarnings("unused")
 	private static final String TAG = "MainActivity";
 	TextView		_altitude;
 	TextView		_latitude;
@@ -70,19 +70,10 @@ public class MainActivity extends Activity {
     }
     
     private void requestLocation() {
-    	LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-    	
-    	// Try to get the last known location
-    	Location lastKnownLocation = null;
-    	for (String gps : locationManager.getAllProviders()) {
-    		Log.d(TAG, "Checking for last known location from " + gps);
-    		Location tmp = locationManager.getLastKnownLocation(gps);
-    		if (lastKnownLocation != null && tmp != null && tmp.getTime() > lastKnownLocation.getTime() || lastKnownLocation == null && tmp != null) {
-    			Log.d(TAG, "More recent than previous, using this one");
-    			lastKnownLocation = tmp;
-    		}
-    	}
-    	
+    	LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    	if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            _altitude.setText(R.string.gps_disabled);
+        }
     	LocationListener locationListener = new LocationListener() {
     	    public void onLocationChanged(Location location) {
     	    	AltitudeRequester task = new AltitudeRequester();
@@ -98,13 +89,6 @@ public class MainActivity extends Activity {
 
     	    public void onProviderDisabled(String provider) {}
     	 };
-    	 
-    	 if (lastKnownLocation != null) {
-    		 
-    		 locationListener.onLocationChanged(lastKnownLocation);
-    	 } else {
-    		 Log.d(TAG, "Last known location: unknown");
-    	 }
     	 
     	 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 60 * 1, 0, locationListener);
     }
