@@ -18,6 +18,8 @@
             android:id="@+id/textview_altitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
             android:textColor="#FFFFFCCA"
             android:text="@string/waiting_for_fix" />
 
@@ -25,12 +27,14 @@
             android:id="@+id/textview_latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:textColor="#FFFFFCCA" />
 
         <TextView
             android:id="@+id/textview_longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:textColor="#FFFFFCCA" />
     </LinearLayout>
 
