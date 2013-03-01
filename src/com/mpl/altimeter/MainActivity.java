@@ -27,13 +27,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+@SuppressWarnings("unused")
 public class MainActivity extends Activity {
-
-	@SuppressWarnings("unused")
 	private static final String TAG = "MainActivity";
 	private static final double METRIC_TO_IMP = 0.9144;
 	TextView		_altitude;
