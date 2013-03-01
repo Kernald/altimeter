@@ -12,5 +12,10 @@
     </plurals>
     <string name="longitude">Longitude&#160;: %f°</string>
     <string name="latitude">Latitude&#160;: %f°</string>
+    
+    <string name="settings_disp">Affichage</string>
+    <string name="settings_max_alt">Altitude maximum</string>
+    <string name="settings_max_alt_sum">Altitude la plus élevée affichée</string>
+    <string name="settings_metric">Unités métriques</string>
 
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="Display"
+        android:summary="Display related settings"
+        android:title="@string/settings_disp" >
+        <EditTextPreference
+            android:defaultValue="9000"
+            android:inputType="number"
+            android:key="max_alt"
+            android:singleLine="true"
+            android:summary="@string/settings_max_alt_sum"
+            android:title="@string/settings_max_alt" />
+
+        <CheckBoxPreference
+            android:key="metric"
+            android:defaultValue="true"
+            android:title="@string/settings_metric" />
+    </PreferenceCategory>
+</PreferenceScreen>
