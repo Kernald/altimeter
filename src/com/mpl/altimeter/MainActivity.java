@@ -101,7 +101,7 @@ public class MainActivity extends Activity {
 				stringId = R.plurals.altitude_yards;
 			}
 			_altitude.setText(getResources().getQuantityString(stringId, result.intValue(), result));
-			_background.setAltitude(result);
+			_background.setAltitude(result * 9000 / (double)Integer.valueOf("0" + prefs.getString("max_alt", "9000")));
 		}
 	}
 
