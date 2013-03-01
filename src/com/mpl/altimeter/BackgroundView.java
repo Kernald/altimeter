@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.trevorpage.tpsvg.SVGView;
 
+@SuppressWarnings("unused")
 public class BackgroundView extends SVGView {
 	private static final String	TAG = "BackgroundView";
 	private double				_altitude = 0;
@@ -50,8 +51,6 @@ public class BackgroundView extends SVGView {
 			realWidth = 800 * getHeight() / 1280;
 		else
 			realHeight = 1280 * getWidth() / 800;
-		Log.d(TAG, "real w: " + realWidth);
-		Log.d(TAG, "real h: " + realHeight);
 		int height = getHeightForImageHeight(realHeight);
 		canvas.drawLine(0, height, realWidth, height, _painter);
 	}
@@ -66,9 +65,7 @@ public class BackgroundView extends SVGView {
 	}
 	
 	private int getHeightForImageHeight(int imageHeight) {
-		Log.d(TAG, "image height: " + imageHeight);
 		int res = (int)(imageHeight * (1 - ((_altitude - _minHeight) / _offset)));
-		Log.d(TAG, String.valueOf(res) + " (" + _altitude + "m)");
 		return res;
 	}
 }
