@@ -6,9 +6,13 @@
     <string name="gps_disabled">GPS désactivé</string>
     <string name="waiting_for_fix">En attente du GPS…</string>
     
-    <plurals name="altitude">
+    <plurals name="altitude_meters">
         <item quantity="one">Altitude&#160;: 1 mètre</item>
         <item quantity="other">Altitude&#160;: %f mètres</item>
+    </plurals>
+    <plurals name="altitude_yards">
+        <item quantity="one">Altitude&#160;: 1 yard</item>
+        <item quantity="other">Altitude&#160;: %f yards</item>
     </plurals>
     <string name="longitude">Longitude&#160;: %f°</string>
     <string name="latitude">Latitude&#160;: %f°</string>

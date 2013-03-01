@@ -21,9 +21,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = "MainActivity";
+	private static final double METRIC_TO_IMP = 0.9144;
 	TextView		_altitude;
 	TextView		_latitude;
 	TextView		_longitude;
@@ -50,8 +53,12 @@ public class MainActivity extends Activity {
 		_background.setSVGRenderer(image, null);
 		_background.setBackgroundColor(0xffffffff);
 
-		requestLocation();
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		requestLocation();
 	}
 
 	@Override
@@ -87,7 +94,13 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(Double result) {
-			_altitude.setText(getResources().getQuantityString(R.plurals.altitude, result.intValue(), result));
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+			int stringId = R.plurals.altitude_meters;
+			if (!prefs.getBoolean("metric", true)) {
+				result = result * METRIC_TO_IMP;
+				stringId = R.plurals.altitude_yards;
+			}
+			_altitude.setText(getResources().getQuantityString(stringId, result.intValue(), result));
 			_background.setAltitude(result);
 		}
 	}
