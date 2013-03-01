@@ -45,7 +45,7 @@ public class BackgroundView extends SVGView {
 		// Get the real displayed image size
 		int realHeight = getHeight();
 		int realWidth = getWidth();
-		boolean higher = getHeight() / getWidth() > 1280 / 800;
+		boolean higher = (float)getHeight() / getWidth() > (float)1280 / 800;
 		if (higher)
 			realWidth = 800 * getHeight() / 1280;
 		else
