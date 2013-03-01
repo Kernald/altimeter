@@ -42,12 +42,12 @@ public class MainActivity extends Activity {
         _altitude = (TextView) findViewById(R.id.textview_altitude);
         _latitude = (TextView) findViewById(R.id.textview_latitude);
         _longitude = (TextView) findViewById(R.id.textview_longitude);
-        requestLocation();
-        
-        _background = (BackgroundView)this.findViewById(R.id.background);
+        _background = (BackgroundView) findViewById(R.id.background);
         SVGParserRenderer image = new SVGParserRenderer(this, R.raw.background);
         _background.setSVGRenderer(image, null);
         _background.setBackgroundColor(0xffffffff);
+
+        requestLocation();
     }
 
     /*@Override
