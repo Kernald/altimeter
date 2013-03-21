@@ -89,19 +89,23 @@ public class MainActivity extends Activity {
 	private class AltitudeRequester extends AsyncTask<Location, Void, Double> {
 		@Override
 		protected Double doInBackground(Location... arg) {
-			return Double.valueOf(getAltitude(arg[0].getLongitude(), arg[0].getLatitude()));
+			return getAltitude(arg[0].getLongitude(), arg[0].getLatitude());
 		}
 
 		@Override
 		protected void onPostExecute(Double result) {
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-			int stringId = R.plurals.altitude_meters;
-			if (!prefs.getBoolean("metric", true)) {
-				result = result * METRIC_TO_IMP;
-				stringId = R.plurals.altitude_yards;
+			if (!result.equals(Double.NaN)) {
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+				int stringId = R.plurals.altitude_meters;
+				if (!prefs.getBoolean("metric", true)) {
+					result = result * METRIC_TO_IMP;
+					stringId = R.plurals.altitude_yards;
+				}
+				_altitude.setText(getResources().getQuantityString(stringId, result.intValue(), result));
+				_background.setAltitude(result * 9000 / (double)Integer.valueOf("0" + prefs.getString("max_alt", "9000")));
+			} else {
+				_altitude.setText(R.string.no_internet_connection);
 			}
-			_altitude.setText(getResources().getQuantityString(stringId, result.intValue(), result));
-			_background.setAltitude(result * 9000 / (double)Integer.valueOf("0" + prefs.getString("max_alt", "9000")));
 		}
 	}
 
@@ -129,8 +133,8 @@ public class MainActivity extends Activity {
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 60 * 1, 0, locationListener);
 	}
 
-	private double getAltitude(Double longitude, Double latitude) {
-		double result = Double.NaN;
+	private Double getAltitude(Double longitude, Double latitude) {
+		Double result = Double.NaN;
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		String url = "https://maps.googleapis.com/maps/api/elevation/json?locations="
@@ -158,8 +162,12 @@ public class MainActivity extends Activity {
 				}
 
 			}
-		} catch (ClientProtocolException e) {}
-		catch (IOException e) {}
+		} catch (ClientProtocolException e) {
+			//e.printStackTrace();
+		}
+		catch (IOException e) {
+			//e.printStackTrace();
+		}
 		return result;
 	}
 

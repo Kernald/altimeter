@@ -5,6 +5,7 @@
     <string name="menu_settings">Paramètres</string>
     <string name="gps_disabled">GPS désactivé</string>
     <string name="waiting_for_fix">En attente du GPS…</string>
+    <string name="no_internet_connection">Problème de connexion internet</string>
     
     <plurals name="altitude_meters">
         <item quantity="one">Altitude&#160;: 1 mètre</item>
