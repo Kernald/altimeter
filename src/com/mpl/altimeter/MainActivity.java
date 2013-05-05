@@ -36,6 +36,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 	private static final double METRIC_TO_IMP = 1.0936133;
+	private static final double METRIC_TO_FEET = 3.28083989501312;
 	TextView		_altitude;
 	TextView		_latitude;
 	TextView		_longitude;
@@ -97,9 +98,13 @@ public class MainActivity extends Activity {
 			if (!result.equals(Double.NaN)) {
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 				int stringId = R.plurals.altitude_meters;
-				if (!prefs.getBoolean("metric", true)) {
+				String unit = prefs.getString("unit", "meters");
+				if (unit.equals("yards")) {
 					result = result * METRIC_TO_IMP;
 					stringId = R.plurals.altitude_yards;
+				} else if (unit.equals("feet")) {
+					result = result * METRIC_TO_FEET;
+					stringId = R.plurals.altitude_feet;
 				}
 				_altitude.setText(getResources().getQuantityString(stringId, result.intValue(), result));
 				_background.setAltitude(result * 9000 / (double)Integer.valueOf("0" + prefs.getString("max_alt", "9000")));

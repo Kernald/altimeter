@@ -13,9 +13,14 @@
             android:summary="@string/settings_max_alt_sum"
             android:title="@string/settings_max_alt" />
 
-        <CheckBoxPreference
-            android:key="metric"
-            android:defaultValue="true"
-            android:title="@string/settings_metric" />
+        <ListPreference
+            android:defaultValue="@string/settings_default_unit"
+            android:dialogTitle="@string/settings_unit"
+            android:entries="@array/settings_units"
+            android:entryValues="@array/settings_units_values"
+            android:key="unit"
+            android:summary="@string/settings_unit_summary"
+            android:title="@string/settings_unit" />
     </PreferenceCategory>
+
 </PreferenceScreen>

@@ -6,21 +6,35 @@
     <string name="gps_disabled">GPS désactivé</string>
     <string name="waiting_for_fix">En attente du GPS…</string>
     <string name="no_internet_connection">Problème de connexion internet</string>
-    
+
     <plurals name="altitude_meters">
+        <item quantity="zero">Altitude&#160;: 0 mètre</item>
         <item quantity="one">Altitude&#160;: 1 mètre</item>
         <item quantity="other">Altitude&#160;: %f mètres</item>
     </plurals>
     <plurals name="altitude_yards">
+        <item quantity="zero">Altitude&#160;: 0 yard</item>
         <item quantity="one">Altitude&#160;: 1 yard</item>
         <item quantity="other">Altitude&#160;: %f yards</item>
     </plurals>
+    <plurals name="altitude_feet">
+        <item quantity="zero">Altitude&#160;: 0 pied</item>
+        <item quantity="one">Altitude&#160;: 1 pied</item>
+        <item quantity="other">Altitude&#160;: %f pieds</item>
+    </plurals>
+
     <string name="longitude">Longitude&#160;: %f°</string>
     <string name="latitude">Latitude&#160;: %f°</string>
-    
     <string name="settings_disp">Affichage</string>
     <string name="settings_max_alt">Altitude maximum</string>
     <string name="settings_max_alt_sum">Altitude la plus élevée affichée</string>
-    <string name="settings_metric">Unités métriques</string>
+    <string name="settings_unit">Unité</string>
+    <string name="settings_unit_summary">Unité à utiliser pour afficher l\'altitude</string>
+
+    <string-array name="settings_units">
+        <item>Mètres</item>
+        <item>Pieds</item>
+        <item>Yards</item>
+    </string-array>
 
 </resources>
