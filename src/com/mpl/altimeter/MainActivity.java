@@ -35,7 +35,7 @@ import android.widget.TextView;
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
-	private static final double METRIC_TO_IMP = 0.9144;
+	private static final double METRIC_TO_IMP = 1.0936133;
 	TextView		_altitude;
 	TextView		_latitude;
 	TextView		_longitude;
