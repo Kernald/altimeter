@@ -12,6 +12,7 @@ android {
         minSdkVersion 8
         targetSdkVersion 22
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        versionCode versionMajor * 100000 + versionMinor * 100 + versionPatch
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
