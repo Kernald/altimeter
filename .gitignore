@@ -12,6 +12,8 @@
 bin/
 dist/
 gen/
+app/build
+build
 
 # libs
 libs/
@@ -23,3 +25,13 @@ local.properties
 .classpath
 .project
 .settings
+
+# IntelliJ/Android Studio
+.idea
+*.iml
+
+# Gradle
+.gradle
+
+# Keystore
+keystore
